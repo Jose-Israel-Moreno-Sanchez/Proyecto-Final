@@ -1,0 +1,96 @@
+<!-- 📁 checkout.html - Confirmación de pedido | TianguiStore -->
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Confirmar Pedido | TianguiStore</title>
+
+  <!-- MaterializeCSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="estilo/main.css" />
+</head>
+
+<body class="grey darken-4 white-text">
+
+  <!-- Navbar dinámico -->
+  <div id="navbar-container"></div>
+
+  <!-- Contenido principal -->
+  <main class="container py-5">
+    <header class="center-align mb-4">
+      <h1 class="teal-text text-lighten-2">
+        <i class="fas fa-map-marker-alt me-2"></i> Confirmación de Pedido
+      </h1>
+      <p class="flow-text grey-text text-lighten-1">
+        Ingresa los datos necesarios para completar tu compra.
+      </p>
+    </header>
+
+    <section class="row">
+      <div class="col s12 m10 offset-m1 l8 offset-l2">
+        <div class="formulario-wrapper glass-card">
+          <h2 class="intro-title">
+            <i class="fas fa-truck"></i> Dirección de Envío
+          </h2>
+
+          <form id="form-envio" autocomplete="on" novalidate>
+
+            <!-- Dirección -->
+            <div class="input-field">
+              <input id="direccion_entrega" name="direccion_entrega" type="text" class="validate white-text" required autocomplete="street-address" maxlength="255">
+              <label for="direccion_entrega">📍 Dirección completa</label>
+            </div>
+
+
+            <!-- Método de Pago -->
+            <div class="input-field">
+              <select id="metodo_pago" name="metodo_pago" class="browser-default white-text grey darken-4" required>
+                <option value="" disabled selected>💳 Selecciona un método de pago</option>
+                <option value="efectivo">Efectivo</option>
+                <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+                <option value="transferencia">Transferencia Bancaria</option>
+              </select>
+              <span class="helper-text amber-text text-lighten-3"></span>
+            </div>
+
+            <!-- Cupón -->
+            <div class="input-field">
+              <input id="cupon" name="cupon" type="text" class="validate white-text" maxlength="30" placeholder="Descuento promocional (opcional)">
+              <label for="cupon">🎟️ Código de cupón</label>
+              <span class="helper-text grey-text text-lighten-1">Máximo 30 caracteres</span>
+            </div>
+
+            <!-- Comentarios -->
+            <div class="input-field">
+              <textarea id="comentarios" name="comentarios" class="materialize-textarea white-text" maxlength="300" placeholder="Instrucciones especiales, referencias o avisos."></textarea>
+              <label for="comentarios">📝 Comentarios adicionales</label>
+              <span class="helper-text grey-text text-lighten-1">Opcional</span>
+            </div>
+
+            <!-- Botón -->
+            <button type="submit" class="btn waves-effect teal darken-1 full-width">
+              <i class="material-icons left">check_circle</i> Realizar Pedido
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer dinámico -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts del sistema -->
+  <script src="scripts/loadComponent.js" defer></script>
+  <script src="scripts/checkout.js" defer></script>
+
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+</body>
+</html>

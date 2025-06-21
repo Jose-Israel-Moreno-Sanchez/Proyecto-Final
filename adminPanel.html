@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel de Administración | TianguiStore</title>
+
+  <!-- MaterializeCSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="estilo/main.css" />
+</head>
+
+<body class="dark-theme">
+
+  <!-- 🔝 Navbar completo -->
+  <div id="navbar-container"></div>
+
+  <!-- 🧠 Panel de Administración -->
+  <main class="section" id="seccion-principal">
+    <div class="container">
+      <h4 class="center-align purple-text text-accent-3">Panel de Administración</h4>
+      <p class="purple-text text-lighten-2 center-align">Selecciona una sección para comenzar</p>
+
+      <div class="row">
+
+        <div class="col s12 m6 l4">
+          <a href="#dashboard" class="menu-tarjeta z-depth-3">
+            <i class="fas fa-chart-line fa-2x"></i>
+            <span>Dashboard</span>
+          </a>
+        </div>
+
+        <div class="col s12 m6 l4">
+          <a href="#usuarios" class="menu-tarjeta z-depth-3">
+            <i class="fas fa-users fa-2x"></i>
+            <span>Usuarios</span>
+          </a>
+        </div>
+
+        <div class="col s12 m6 l4">
+          <a href="#productos" class="menu-tarjeta z-depth-3">
+            <i class="fas fa-boxes fa-2x"></i>
+            <span>Productos</span>
+          </a>
+        </div>
+
+        <div class="col s12 m6 l4">
+          <a href="#pedidos" class="menu-tarjeta z-depth-3">
+            <i class="fas fa-receipt fa-2x"></i>
+            <span>Pedidos</span>
+          </a>
+        </div>
+
+        <div class="col s12 m6 l4">
+          <a href="#configuracion" class="menu-tarjeta z-depth-3">
+            <i class="fas fa-cogs fa-2x"></i>
+            <span>Configuración</span>
+          </a>
+        </div>
+
+        <div class="col s12 m6 l4">
+          <a href="#reportes" class="menu-tarjeta z-depth-3">
+            <i class="fas fa-chart-pie fa-2x"></i>
+            <span>Reportes</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- 🔻 Footer global -->
+  <div id="footer-container"></div>
+
+  <!-- 📦 Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+  <script src="scripts/loadComponent.js" defer></script>
+  <script type="module" src="scripts/admin/index.js" defer></script>
+</body>
+</html>

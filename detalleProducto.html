@@ -1,0 +1,99 @@
+<!-- 📄 detalleProducto.html - Detalle de Producto TianguiStore -->
+<!DOCTYPE html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121212" />
+    <meta name="robots" content="noindex, follow" />
+    <title>Detalle del Producto | Dulceria</title>
+
+    <!-- 🌐 Iconos y estilo visual -->
+    <link rel="icon" type="image/png" href="/favicon-192.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="/estilo/main.css" />
+  </head>
+
+  <body class="dark-mode grey darken-4 white-text">
+
+    <!-- 🔝 Navbar dinámico -->
+    <header style="position: relative; z-index: 1000">
+      <div id="navbar-container" role="navigation" aria-label="Menú principal"></div>
+    </header>
+
+    <!-- 📦 Detalle del producto -->
+    <main class="container section detalle-producto-wrapper" role="main">
+      <div class="row card-panel z-depth-4" style="background-color: #a6f6af">
+        <!-- 📷 Imagen -->
+        <div class="col s12 m6 center-align">
+          <img
+            id="imagen-producto"
+            src="/imagenes/default.png"
+            alt="Imagen del producto"
+            class="responsive-img z-depth-3"
+            loading="lazy"
+            style="max-height: 360px; border-radius: 12px;"
+          />
+        </div>
+
+        <!-- 🧾 Datos del producto -->
+        <div class="col s12 m6">
+          <h4 id="nombre-producto" class="secondary-accent-text" style="margin-top: 0;"></h4>
+          <p id="descripcion-producto" class="black-text text-lighten-2 flow-text"></p>
+
+          <ul class="collection with-header purple-text text-lighten-3">
+            <li class="collection-header"><strong>Detalles del producto</strong></li>
+            <li class="collection-item grey darken-3">
+              <strong>💲 Precio:</strong> <span id="precio-producto"></span>
+            </li>
+            <li class="collection-item grey darken-3">
+              <strong>📦 Stock:</strong> <span id="stock-producto"></span>
+            </li>
+            <li class="collection-item grey darken-3">
+              <strong>🏷️ Marca:</strong> <span id="marca-producto"></span>
+            </li>
+            <li class="collection-item grey darken-3">
+              <strong>📁 Categoría:</strong> <span id="categoria-producto"></span>
+            </li>
+            <li class="collection-item grey darken-3">
+              <strong>📂 Subcategoría:</strong> <span id="subcategoria-producto"></span>
+            </li>
+          </ul>
+
+          <!-- 🛒 Botón -->
+          <div class="center-align">
+            <button
+              id="btn-agregar"
+              class="btn-large amber darken-2 waves-effect waves-light"
+              aria-label="Agregar al carrito"
+            >
+              <i class="material-icons left">add_shopping_cart</i>
+              Agregar al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 🔚 Footer dinámico -->
+    <footer class="page-footer grey darken-3" role="contentinfo">
+      <div id="footer-container"></div>
+    </footer>
+
+    <!-- 📜 Scripts del sistema -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+      defer
+    ></script>
+    <script src="/scripts/loadComponent.js" defer></script>
+    <script src="/scripts/detalleProducto.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!-- 📁 login.html - Página de inicio de sesión TianguiStore -->
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Iniciar Sesión | TianguiStore</title>
+
+  <!-- MaterializeCSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <!-- Animaciones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="estilo/main.css" />
+</head>
+
+<body class="dark-theme">
+  <!-- 🔝 Navbar modular -->
+  <div id="navbar-container"></div>
+
+  <!-- 🧠 Contenedor principal -->
+  <main class="formulario-wrapper animate__animated animate__fadeIn" style="max-width: 480px; margin: 0 auto;">
+    <h2 class="intro-title center-align">
+      <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+    </h2>
+
+    <p class="center-align" style="margin-bottom: 2rem;">
+      Accede a tu cuenta para descubrir productos únicos, gestionar tus compras y apoyar al comercio digital con alma local.<br />
+      En <strong>TianguiStore</strong>, cada compra impulsa a emprendedores reales. ¡Bienvenido de vuelta!
+    </p>
+
+    <form id="loginForm" novalidate>
+      <!-- 📧 Correo -->
+      <div class="input-field">
+        <i class="fas fa-envelope prefix white-text"></i>
+        <input type="email" id="email" class="validate" required autocomplete="email" />
+        <label for="email">Correo Electrónico</label>
+        <span class="helper-text" data-error="Correo inválido"></span>
+      </div>
+
+      <!-- 🔒 Contraseña -->
+      <div class="input-field">
+        <i class="fas fa-lock prefix white-text"></i>
+        <input type="password" id="password" class="validate" required autocomplete="current-password" />
+        <label for="password">Contraseña</label>
+        <a id="togglePassword" class="toggle-password" title="Mostrar/Ocultar contraseña">
+          <i class="fas fa-eye-slash"></i>
+        </a>
+        <span class="helper-text" data-error="Mínimo 8 caracteres, una mayúscula y un número"></span>
+      </div>
+
+      <!-- 🔁 Recordarme -->
+      <p class="left-align" style="margin-bottom: 2rem;">
+        <label>
+          <input type="checkbox" id="remember" class="filled-in" />
+          <span>Recordarme</span>
+        </label>
+      </p>
+
+      <!-- 🟧 Botón de ingreso -->
+      <div class="center-align">
+        <button type="submit" class="btn-large btn-auth tooltipped" data-tooltip="Entrar a tu cuenta" style="width: 100%;">
+          <i class="fas fa-sign-in-alt left"></i> Entrar
+        </button>
+      </div>
+
+      <!-- 🔗 Acciones -->
+      <div class="section center-align" style="margin-top: 2.5rem;">
+        <a href="recuperar.html" class="grey-text text-lighten-2">
+          <i class="fas fa-question-circle left"></i> ¿Olvidaste tu contraseña?
+        </a>
+        <br /><br />
+        <a href="registro.html" class="btn-flat amber-text text-lighten-1">
+          <i class="fas fa-user-plus left"></i> Crear cuenta
+        </a>
+      </div>
+
+      <!-- ✅ / ❌ Mensajes -->
+      <div id="mensajeError" class="card-panel red darken-2 white-text" style="display: none;"></div>
+      <div id="mensajeExito" class="card-panel green darken-2 white-text" style="display: none;"></div>
+    </form>
+  </main>
+
+  <!-- 🔻 Footer modular -->
+  <div id="footer-container"></div>
+
+  <!-- 📜 Scripts -->
+  <script src="scripts/loadComponent.js" defer></script>
+  <script src="scripts/login.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+</body>
+</html>

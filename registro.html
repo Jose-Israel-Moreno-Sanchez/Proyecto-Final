@@ -1,0 +1,167 @@
+<!-- 📁 registro.html - Página de registro TianguiStore -->
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crear Cuenta | TianguiStore</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="estilo/main.css" />
+</head>
+
+<body class="dark-theme">
+  <!-- 🔝 Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- 🧾 Formulario con fondo ceremonial -->
+  <main class="formulario-wrapper animate__animated animate__fadeIn">
+    <h2 class="intro-title center-align">
+      <i class="fas fa-user-plus"></i> Crear una Cuenta
+    </h2>
+
+    <form id="registroForm" novalidate autocomplete="on" aria-label="Formulario de registro">
+      <input type="hidden" id="tipoCuenta" name="tipoCuenta" value="cliente" />
+
+      <!-- Tipo de cuenta -->
+      <div class="row">
+        <div class="input-field col s12 m6 offset-m3">
+          <select id="tipoUsuario" name="tipoCuenta" aria-required="true">
+            <option value="cliente" selected>Cliente</option>
+            <option value="vendedor">Vendedor</option>
+            <option value="soporte">Soporte</option>
+          </select>
+          <label for="tipoUsuario">Tipo de cuenta *</label>
+        </div>
+      </div>
+
+      <!-- Correo y contraseña -->
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <i class="fas fa-envelope prefix black-text"></i>
+          <input type="email" id="email" name="correo_electronico" required autocomplete="email" />
+          <label for="email">Correo electrónico *</label>
+          <span class="helper-text" data-error="Correo inválido" data-success="Correo válido"></span>
+        </div>
+
+        <div class="input-field col s12 m6">
+          <i class="fas fa-lock prefix black-text"></i>
+          <input type="password" id="password" name="password" required autocomplete="new-password" />
+          <label for="password">Contraseña *</label>
+          <span class="toggle-password" data-target="password"><i class="fas fa-eye-slash"></i></span>
+          <span class="helper-text">Mínimo 8 caracteres, con al menos una letra y un número.</span>
+          <span id="fuerzaPassword" class="helper-text"></span>
+        </div>
+      </div>
+
+      <!-- Confirmación -->
+      <div class="row">
+        <div class="input-field col s12 m6 offset-m6">
+          <i class="fas fa-lock prefix black-text"></i>
+          <input type="password" id="confirmPassword" name="confirmPassword" required autocomplete="new-password" />
+          <label for="confirmPassword">Confirmar contraseña *</label>
+          <span class="toggle-password" data-target="confirmPassword"><i class="fas fa-eye-slash"></i></span>
+          <span id="mensajeConfirmacion" class="helper-text">Repite la contraseña.</span>
+        </div>
+      </div>
+
+      <!-- Nombre y apellidos -->
+      <div class="row">
+        <div class="input-field col s12 m4">
+          <i class="fas fa-user prefix white-text"></i>
+          <input type="text" id="nombre" name="nombre" required autocomplete="given-name" />
+          <label for="nombre">Nombre *</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <input type="text" id="apellido_paterno" name="apellido_paterno" autocomplete="family-name" />
+          <label for="apellido_paterno">Apellido paterno</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <input type="text" id="apellido_materno" name="apellido_materno" autocomplete="additional-name" />
+          <label for="apellido_materno">Apellido materno</label>
+        </div>
+      </div>
+
+      <!-- Género y nacimiento -->
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <select id="genero" name="genero">
+            <option value="no_especificado" selected>No especificado</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+          </select>
+          <label for="genero">Género</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" autocomplete="bday" />
+          <label for="fecha_nacimiento">Fecha de nacimiento</label>
+        </div>
+      </div>
+
+      <!-- Teléfono y dirección -->
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <i class="fas fa-phone prefix white-text"></i>
+          <input type="tel" id="telefono" name="telefono" autocomplete="tel" />
+          <label for="telefono">Teléfono</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <i class="fas fa-map-marker-alt prefix white-text"></i>
+          <input type="text" id="direccion" name="direccion" autocomplete="street-address" />
+          <label for="direccion">Dirección</label>
+        </div>
+      </div>
+
+      <!-- Cómo conoció -->
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <select id="como_conociste" name="como_conociste" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="redes_sociales">Redes sociales</option>
+            <option value="google">Google</option>
+            <option value="videos">Videos o reels</option>
+            <option value="eventos">Eventos o ferias</option>
+            <option value="recomendacion">Recomendación personal</option>
+            <option value="otro">Otro</option>
+          </select>
+          <label for="como_conociste">¿Cómo conociste TianguiStore? *</label>
+        </div>
+        <div class="input-field col s12 m6" id="campoOtroConociste" style="display: none;">
+          <input type="text" id="otro_como_conociste" name="otro_como_conociste" maxlength="100" />
+          <label for="otro_como_conociste">Especifica si elegiste “Otro”</label>
+        </div>
+      </div>
+
+      <!-- Campos dinámicos -->
+      <div id="camposDinamicos"></div>
+
+      <!-- Botón -->
+      <div class="row center-align" style="margin-top: 2rem;">
+        <button type="submit" class="btn-large btn-auth tooltipped" data-tooltip="Crear cuenta">
+          <i class="fas fa-user-plus left"></i> Registrarse
+        </button>
+      </div>
+
+      <!-- Ir a login -->
+      <div class="section center-align">
+        <a href="login.html" class="grey-text text-lighten-3 tooltipped" data-tooltip="¿Ya tienes cuenta?">
+          <i class="fas fa-arrow-left left"></i> Ya tengo una cuenta
+        </a>
+      </div>
+    </form>
+  </main>
+
+  <!-- 🔻 Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script src="scripts/loadComponent.js" defer></script>
+  <script src="scripts/registro.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+</body>
+</html>

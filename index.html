@@ -1,0 +1,97 @@
+<!-- 📁 index.html – Inicio de TianguiStore -->
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Descubre productos únicos en un solo lugar. Dulceria, el mercado digital con alma local." />
+    <meta name="theme-color" content="#121212" />
+    <meta name="robots" content="index, follow" />
+
+    <title>Inicio | Dulceria</title>
+
+    <!-- 🌐 Favicon + PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/webp" href="/favicon-512.webp" sizes="512x512" />
+    <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192" />
+
+    <!-- 🎨 Estilos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="estilo/main.css" />
+  </head>
+
+  <body class="grey darken-4 white-text">
+    <!-- 🔝 NAVBAR dinámico -->
+    <header style="position: relative; z-index: 1000">
+      <div id="navbar-container" role="navigation" aria-label="Menú principal"></div>
+    </header>
+
+    <!-- 🌟 CONTENIDO PRINCIPAL -->
+    <main class="container" role="main">
+      <!-- 🎉 ENCABEZADO DE BIENVENIDA -->
+      <section class="section center-align" aria-labelledby="titulo-bienvenida">
+        <div class="intro-banner animate__animated animate__fadeInDown" role="region" aria-label="Bienvenida">
+          <h1 id="titulo-bienvenida" class="intro-title">
+            <i class="fas fa-store"></i> Dulceria
+          </h1>
+          <p class="flow-text black-text text-lighten-2">
+            En Dulceria, cada producto cuenta una historia. Explora artículos únicos, originales y con alma —
+            desde lo artesanal hasta lo tecnológico. Conecta con el talento local y transforma tu forma de comprar.
+            <br />
+            <strong>Más que un marketplace: un puente entre lo auténtico y lo extraordinario.</strong>
+          </p>
+        </div>
+      </section>
+
+      <!-- 📦 SECCIÓN DE PRODUCTOS DESTACADOS -->
+      <section class="section" aria-labelledby="titulo-productos">
+        <header class="center-align">
+          <h2 id="titulo-productos" class="purple-text animate__animated animate__fadeInUp">
+            <i class="fas fa-box-open purple-text text-accent-2"></i> Nuestros Productos
+          </h2>
+          <p class="black-text text-lighten-2">Selecciona tus favoritos y agrégalos al carrito</p>
+        </header>
+
+        <!-- 🧱 GRID DE PRODUCTOS -->
+        <div class="row" id="productos-container" aria-live="polite" aria-busy="false">
+          <!-- Tarjetas cargadas dinámicamente por productos.js -->
+        </div>
+
+        <!-- 🔁 MENSAJE DE CARGA O VACÍO -->
+        <div id="mensaje-productos" class="center-align grey-text text-lighten-1" style="display: none;">
+          <i class="material-icons large">search_off</i>
+          <p>No hay productos disponibles en este momento.</p>
+        </div>
+
+        <!-- 🔢 PAGINACIÓN -->
+        <div class="center-align">
+          <ul class="pagination" id="paginacion-productos" aria-label="Paginación de productos">
+            <!-- Botones generados por JS -->
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- 🔔 TOASTS -->
+    <div id="toast-container" class="fixed-action-btn" aria-hidden="true"></div>
+    <!-- 🔔 TOASTS -->
+    <div id="toast-container" class="fixed-action-btn" aria-hidden="true"></div>
+
+    <!-- 📥 FOOTER dinámico -->
+    <footer class="page-footer grey darken-3" role="contentinfo">
+      <div id="footer-container"></div>
+    </footer>
+    <!-- 📥 FOOTER dinámico -->
+    <footer class="page-footer grey darken-3" role="contentinfo">
+      <div id="footer-container"></div>
+    </footer>
+
+    <!-- 📜 SCRIPTS -->
+    <script src="scripts/loadComponent.js" defer></script>
+    <script src="scripts/productos.js" defer></script>
+    <script src="scripts/carrito.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+  </body>
+</html>

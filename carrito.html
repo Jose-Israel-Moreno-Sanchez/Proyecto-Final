@@ -1,0 +1,88 @@
+<!-- 📁 carrito.html - Carrito de Compras Mejorado | TianguiStore -->
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrito | TianguiStore</title>
+
+  <!-- MaterializeCSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="estilo/main.css" />
+</head>
+
+<body class="dark">
+
+  <!-- 🔝 Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- 🛒 Contenido principal -->
+  <main class="container section">
+    <header class="center-align">
+      <h1 class="purple-text text-lighten-2">
+        <i class="fas fa-shopping-basket"></i> Tu Carrito
+      </h1>
+      <p class="black-text text-lighten-1">Revisa y confirma tus productos antes de pagar.</p>
+    </header>
+
+    <div class="row">
+      <!-- 🧾 Lista de productos -->
+      <section class="col s12 m7 l8" aria-labelledby="titulo-carrito">
+        <div class="card-panel glass-card z-depth-1">
+          <h2 id="titulo-carrito" class="purple-text text-lighten-3">
+            <i class="fas fa-box-open"></i> Productos en Carrito
+          </h2>
+          <ul id="lista-carrito" class="collection">
+            <li id="carrito-vacio" class="collection-item center-align purple-text text-lighten-2">
+              <i class="fas fa-box"></i><br>Tu carrito está vacío.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 📋 Resumen del pedido -->
+      <aside class="col s12 m5 l4" aria-labelledby="titulo-resumen">
+        <div class="card-panel glass-card z-depth-1">
+          <h2 id="titulo-resumen" class="purple-text text-lighten-3">
+            <i class="fas fa-receipt"></i> Resumen del Pedido
+          </h2>
+
+          <ul class="striped white-text">
+            <li>Subtotal <span class="right" id="resumen-subtotal">$0.00</span></li>
+            <li>IVA (16%) <span class="right" id="resumen-iva">$0.00</span></li>
+            <li><strong>Total</strong> <span class="right teal-text text-accent-1" id="total_etiqueta">$0.00</span></li>
+          </ul>
+
+          <div class="section">
+            <button id="vaciar-carrito" class="btn red darken-2 waves-effect waves-light full-width" style="margin-bottom: 1rem;">
+              <i class="fas fa-trash-alt left"></i> Vaciar Carrito
+            </button>
+            <button id="btnRealizarPedido" class="btn teal darken-1 waves-effect waves-light full-width" style="margin-bottom: 1rem;">
+              <i class="fas fa-credit-card left"></i> Proceder al Pago
+            </button>
+            <a href="index.html" class="btn grey lighten-2 black-text waves-effect full-width">
+              <i class="fas fa-arrow-left left"></i> Seguir Comprando
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ✅ Toasts -->
+  <div id="toast-container" class="fixed-action-btn" style="bottom: 1rem; right: 1rem;"></div>
+
+  <!-- 🔚 Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script src="scripts/loadComponent.js" defer></script>
+  <script src="scripts/carrito.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+</body>
+</html>

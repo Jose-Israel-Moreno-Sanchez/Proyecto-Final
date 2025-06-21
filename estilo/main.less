@@ -1,0 +1,1742 @@
+/* ============================================================================
+   🎨 TianguiStore - Estilo Oscuro Mexica Glassmorphism (Variables extendidas)
+   Paleta visual inspirada en el diseño mexica con enfoque moderno y oscuro.
+   Este bloque define todas las variables base utilizadas en los componentes.
+============================================================================ */
+
+/* 🌑 Colores de fondo principales */
+@dark-bg: #081c1b; // Fondo general oscuro de toda la interfaz
+@panel-bg: rgba(
+  8,
+  28,
+  27,
+  0.92
+); // Fondo de paneles y secciones con opacidad para profundidad
+@card-bg: rgba(
+  14,
+  34,
+  33,
+  0.96
+); // Fondo sólido para tarjetas, usado en elementos principales
+
+/* 🌗 Colores de texto */
+@text-main: #e0e0e0; // Texto principal, claro y legible sobre fondo oscuro
+@text-muted: #b0b0b0; // Texto atenuado para descripciones, notas o leyendas
+
+/* 💎 Colores de acento */
+@primary-accent: #00acc1; // Acento principal (turquesa), usado para enlaces y botones
+@secondary-accent: #d4a03f; // Acento secundario (oro mexica), usado en títulos y llamadas visuales
+
+/* 🧊 Estilo Glassmorphism */
+@glass-bg: rgba(14, 34, 33, 0.75); // Fondo translúcido para elementos glass
+@glass-blur: 16px; // Intensidad de desenfoque del efecto glass
+@glass-border: rgba(
+  255,
+  255,
+  255,
+  0.06
+); // Borde sutil y luminoso para elementos difuminados
+
+/* 📐 Bordes y radios */
+@border-radius: 0.75rem; // Radio estándar para bordes redondeados en tarjetas y botones
+@border-radius-lg: 1.25rem; // Variante para elementos grandes o modales
+
+/* 🌀 Transiciones y movimiento */
+@transition-time: 0.3s; // Duración por defecto para transiciones suaves
+@transition-fast: 0.15s; // Transición rápida para hover o íconos
+@easing: ease-in-out; // Función de suavizado estándar
+
+/* 🧱 Sombra y profundidad */
+@card-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); // Sombra estándar para elementos elevados
+@shadow-glass: 0 4px 16px rgba(0, 0, 0, 0.4); // Sombra más suave para elementos glass
+
+/* 🎨 Colores utilitarios adicionales */
+@success-color: #4caf50; // Verde para estados exitosos
+@warning-color: #ff9800; // Naranja para alertas o advertencias
+@error-color: #f44336; // Rojo para errores y validaciones
+@info-color: #2196f3; // Azul para mensajes informativos
+
+/* 📏 Breakpoints para diseño responsive */
+@screen-sm: 600px; // Teléfonos
+@screen-md: 992px; // Tablets horizontales
+@screen-lg: 1200px; // Escritorios
+
+/* 🎭 Z-index base para capas */
+@z-dropdown: 1000;
+@z-modal: 1050;
+@z-toast: 1100;
+@z-fixed: 1200;
+
+
+
+/* ============================================================================
+   🧱 BASE - Estilo base para todo el documento HTML
+   Aplica tipografía, colores de fondo, estructura global y animaciones suaves
+============================================================================ */
+
+/* 🌌 Estilo general del cuerpo */
+body {
+  background-color: @dark-bg; // Fondo oscuro principal
+  background-image: url("../imagenes/patron_dark.png"); // Patrón decorativo Mexica
+  background-repeat: repeat; // Se repite en ambas direcciones
+  background-size: 320px auto; // Tamaño adaptado al nuevo diseño seamless
+  background-position: center top; // Centrado arriba
+  background-attachment: fixed; // Permite efecto parallax ligero al hacer scroll
+
+  color: @text-main;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  animation: fadeIn 0.6s ease-in-out;
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+/* 🔗 Enlaces */
+a {
+  color: lighten(@primary-accent, 10%); // Enlaces en turquesa claro por defecto
+  text-decoration: none; // Se elimina el subrayado
+  transition: color @transition-time @easing; // Transición suave al pasar el mouse
+
+  &:hover {
+    color: @primary-accent; // Acento turquesa completo en hover
+  }
+
+  &:focus {
+    outline: 2px dashed fade(@primary-accent, 60%);
+    outline-offset: 2px;
+  }
+}
+
+/* 🧾 Títulos jerárquicos */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: @secondary-accent; // Títulos con color oro Mexica
+  font-weight: 600; // Títulos semibold para jerarquía visual
+  line-height: 1.25;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+
+  small {
+    color: fade(@text-muted, 70%);
+    font-weight: 400;
+    font-size: 75%;
+  }
+}
+
+/* 🧾 Textos secundarios */
+p,
+span,
+label {
+  color: @text-muted; // Texto complementario en gris claro
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+}
+
+/* 🧭 Elementos de scroll personalizados */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: fade(@dark-bg, 60%);
+}
+::-webkit-scrollbar-thumb {
+  background: @primary-accent;
+  border-radius: 6px;
+  transition: background-color @transition-time;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: lighten(@primary-accent, 10%);
+}
+
+/* ============================================================================
+   🔝 NAVBAR - Menú superior principal del sitio
+   Diseño glassmorphism oscuro con íconos, accesibilidad y animación sutil.
+============================================================================ */
+
+nav {
+  background-color: @glass-bg !important; // Fondo translúcido tipo glass
+  -webkit-backdrop-filter: blur(@glass-blur); // Compatibilidad Safari
+  backdrop-filter: blur(@glass-blur); // Efecto difuminado moderno
+  border-bottom: 1px solid @glass-border; // Borde inferior translúcido
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6); // Sombra suave para elevar la barra
+
+  .nav-wrapper {
+    display: flex;
+    justify-content: space-between; // Distribución entre logo y menú
+    align-items: center;
+    overflow: visible !important;
+
+    /* ======================= LOGO ======================= */
+    .brand-logo {
+      display: flex !important;
+      align-items: center;
+      text-decoration: none;
+
+      img {
+        width: 40px;
+        height: 40px;
+        margin-right: 0.6rem;
+        border-radius: 50%;
+        object-fit: cover;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+      }
+
+      span {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: @secondary-accent;
+        line-height: 1;
+        letter-spacing: -0.3px;
+        margin-top: 1px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+      }
+    }
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      margin-right: 3rem;
+      white-space: nowrap; // 👈 evita que el nombre se baje de línea
+      min-width: 190px; // 👈 reserva espacio mínimo para evitar solapamientos
+    }
+  } // <-- Cierra .nav-wrapper correctamente
+
+  /* =================== MENÚ PRINCIPAL =================== */
+  nav ul.hide-on-med-and-down li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 500;
+    font-size: 0.88rem;
+    text-align: center;
+    color: @text-main;
+
+    i {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    &:hover {
+      color: @secondary-accent;
+    }
+  }
+
+  /* 📦 Menús desplegables (glassmorphism refinado y accesible) */
+  .dropdown-content {
+    z-index: 9999 !important;
+    background-color: lighten(@glass-bg, 6%);
+    backdrop-filter: blur(@glass-blur);
+    -webkit-backdrop-filter: blur(@glass-blur);
+    border-radius: @border-radius;
+    border: 1px solid @glass-border;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    animation: dropdownFade 0.3s ease-in-out;
+    margin-bottom: 8px; // espacio extra si hay scroll
+    margin-bottom: 12px; // Evita que quede “pegado” al borde inferior de la pantalla
+
+    li {
+      a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.1rem;
+        font-weight: 500;
+        font-size: 0.93rem;
+        color: @text-main !important;
+        line-height: 1.25;
+        transition:
+          background-color @transition-time ease-in-out,
+          transform 0.2s ease-out;
+
+        i {
+          min-width: 1.2rem;
+          text-align: center;
+          font-size: 1rem;
+          transition: transform 0.2s ease-in-out;
+        }
+
+        &:hover {
+          background-color: fade(@primary-accent, 12%);
+          transform: translateX(4px);
+        }
+
+        &:focus {
+          outline: 2px dashed fade(@primary-accent, 60%);
+          outline-offset: 4px;
+        }
+      }
+    }
+
+    li.divider {
+      margin: 0.2rem 0;
+      height: 1px;
+      background-color: fade(@text-main, 10%);
+    }
+  }
+
+  /* ============================================================================
+   📱 SIDENAV (Mobile) - Menú lateral desplegable para pantallas pequeñas
+   Aplica fondo translúcido, accesibilidad visual y efecto glassmorphism.
+============================================================================ */
+
+  .sidenav {
+    background-color: @panel-bg; // Fondo oscuro semiopaco
+    color: @text-main; // Texto principal claro
+    padding-top: 1rem; // Espaciado superior opcional
+
+    li {
+      border-bottom: 1px solid fade(@glass-border, 20%); // Separadores sutiles
+
+      > a {
+        color: @text-main !important; // Color claro por defecto
+        font-weight: 500; // Texto destacado
+        padding: 0.9rem 1.4rem;
+        display: flex;
+        align-items: center;
+        transition: background-color @transition-time;
+
+        i {
+          margin-right: 0.6rem;
+          width: 1.2rem;
+          text-align: center;
+          font-size: 1.1rem;
+        }
+
+        &:hover {
+          background-color: fade(
+            @primary-accent,
+            12%
+          ); // Hover con acento visual
+        }
+
+        &:focus {
+          outline: 2px dashed fade(@primary-accent, 60%);
+          outline-offset: 4px;
+        }
+      }
+    }
+  }
+
+  /* 🔻 Encabezados desplegables (collapsibles) */
+  .collapsible-header {
+    color: @text-main !important; // Texto claro en encabezado de sección
+    font-weight: 600;
+    font-size: 1.05rem;
+    background-color: transparent;
+    padding: 0.9rem 1.4rem;
+    border-bottom: 1px solid fade(@glass-border, 15%);
+    transition: background-color @transition-time;
+
+    &:hover {
+      background-color: fade(@primary-accent, 10%);
+    }
+
+    i {
+      margin-right: 0.8rem;
+      font-size: 1.1rem;
+    }
+  }
+}
+/* ============================================================================
+   🧊 TARJETAS DE PRODUCTO - Glassmorphism Mexica Oscuro Flotante
+   Estilo refinado, sin bordes visibles, con fondo decorativo y efecto de elevación.
+============================================================================ */
+.card.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  // 🌌 Fondo translúcido + patrón Mexica
+  background:
+    linear-gradient(145deg, fade(@card-bg, 72%), fade(@panel-bg, 84%)),
+    url("../imagenes/patron_producto.png") repeat !important;
+  background-size: 180px;
+  background-position: center;
+  background-blend-mode: overlay;
+
+  // 🌫️ Efecto Glassmorphism
+  backdrop-filter: blur(@glass-blur);
+  -webkit-backdrop-filter: blur(@glass-blur);
+
+  // 🎨 Estética visual
+  border-radius: @border-radius;
+  border: none;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  color: @text-main;
+  transition:
+    transform 0.35s ease-out,
+    box-shadow 0.35s ease-out;
+  animation: fadeInCard 0.5s ease-out both;
+
+  &:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+  }
+
+  .card-image {
+    position: relative;
+    overflow: hidden;
+    padding-top: 42px; // espacio reservado para los badges
+
+    img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 1px solid fade(@primary-accent, 15%);
+      filter: brightness(0.93);
+      transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.04);
+    }
+  }
+
+  .card-content {
+    padding: 1.2rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 0.5rem;
+
+    .product-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: @secondary-accent;
+      letter-spacing: 0.4px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .product-description {
+      font-size: 0.95rem;
+      color: @text-muted;
+      line-height: 1.45;
+    }
+
+    .product-price-stock {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.7rem;
+      font-size: 0.95rem;
+
+      .product-price {
+        font-weight: bold;
+        color: @primary-accent;
+      }
+
+      .product-stock {
+        font-style: italic;
+        color: fade(@text-muted, 70%);
+      }
+    }
+  }
+
+  .card-action {
+    background: none;
+    padding: 0.9rem 1.2rem;
+    text-align: center;
+    box-shadow: inset 0 1px 0 fade(@glass-border, 15%);
+
+    .btn-agregar {
+      background-color: @secondary-accent;
+      color: #081c1b;
+      font-weight: 600;
+      padding: 0.55rem 1.5rem;
+      border-radius: 2rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+
+      i {
+        margin-right: 0.5rem;
+      }
+
+      &:hover {
+        background-color: darken(@secondary-accent, 10%);
+        transform: scale(1.03);
+        box-shadow: 0 6px 16px fade(@secondary-accent, 25%);
+      }
+
+      &:focus {
+        outline: 2px dashed fade(@primary-accent, 60%);
+        outline-offset: 3px;
+      }
+
+      &:disabled {
+        background-color: fade(@secondary-accent, 40%);
+        color: fade(#fff, 60%);
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+      }
+    }
+  }
+
+  .badge-etiqueta {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: fade(@primary-accent, 85%);
+    color: #081c1b;
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(6px);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    z-index: 3;
+    text-transform: uppercase;
+
+    i {
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+  }
+
+  .badges-contenedor {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column; // 👈 En fila
+    gap: 8px; // 👈 Separación horizontal entre badges
+    align-items: center;
+    flex-wrap: wrap; // 👈 Si hay muchos, hacen salto de línea
+    z-index: 4;
+  }
+
+  @keyframes fadeInCard {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .card-content {
+      padding: 1rem;
+    }
+
+    .product-title {
+      font-size: 1.05rem;
+    }
+
+    .product-description {
+      font-size: 0.9rem;
+    }
+
+    .product-price-stock {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .btn-agregar {
+      font-size: 0.88rem;
+    }
+  }
+}
+
+/* ============================================================================
+   🎉 TianguiStore - Encabezado de Bienvenida
+   Estilo visual refinado y animado para el banner inicial de presentación.
+   Inspirado en el diseño Glassmorphism Mexica, con sombra flotante, íconos,
+   y mensajes claros. Compatible con temas oscuros y responsivo.
+============================================================================ */
+
+.intro-banner {
+  background: fade(@glass-bg, 82%);
+  backdrop-filter: blur(@glass-blur);
+  -webkit-backdrop-filter: blur(@glass-blur);
+  border-radius: @border-radius-lg;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  margin-bottom: 3.5rem;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  color: @text-main;
+  animation: fadeInDown 0.6s ease-in-out both;
+
+  .intro-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+    margin-bottom: 1rem;
+
+    i {
+      font-size: 2.5rem;
+      color: @secondary-accent;
+      margin-right: 0.8rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  p {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: @text-muted;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
+
+/* 📱 Responsivo para pantallas pequeñas */
+@media screen and (max-width: @screen-sm) {
+  .intro-banner {
+    padding: 2rem 1.5rem;
+
+    .intro-title {
+      font-size: 2rem;
+
+      i {
+        font-size: 2rem;
+        margin-right: 0.6rem;
+      }
+    }
+
+    p {
+      font-size: 1.05rem;
+    }
+  }
+}
+
+/* ============================================================================ 
+   🛒 CONTADOR DE CARRITO - Estilo global
+   Estilo visual para los badges de cantidad en navbar y menú móvil
+============================================================================ */
+
+#contador-carrito,
+#contador-carrito-mobile {
+  font-weight: 600;
+  font-size: 0.75rem;
+  min-width: 18px;
+  padding: 2px 6px;
+  text-align: center;
+  border-radius: 12px;
+  display: inline-block;
+  background-color: @primary-accent;
+  color: #121212;
+  box-shadow: 0 2px 6px fade(@primary-accent, 35%);
+  transition: all 0.3s @easing;
+  will-change: transform, opacity;
+
+  &.animate__animated {
+    animation-duration: 0.6s;
+    animation-fill-mode: both;
+  }
+
+  &:empty {
+    display: none;
+  }
+}
+/* ============================================================================
+   🎴 Formulario con fondo ceremonial mejorado y contenido delimitado
+============================================================================ */
+.formulario-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+
+  background-color: fade(@glass-bg, 90%);
+  background-image: url("/imagenes/formulario_patron.png");
+  background-size: 200px auto;
+  background-repeat: repeat;
+  background-position: center;
+
+  border-radius: @border-radius-lg;
+  box-shadow: @shadow-glass;
+  backdrop-filter: blur(@glass-blur);
+  -webkit-backdrop-filter: blur(@glass-blur);
+
+  color: @text-main;
+  animation: fadeIn 0.6s ease-in-out;
+
+  overflow: hidden;
+  position: relative;
+
+  h2.intro-title,
+  h4.intro-title,
+  h4.center-align {
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: @text-main;
+
+    i {
+      color: @secondary-accent;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+/* ============================================================================
+   🖊️ Campos de entrada y selects
+============================================================================ */
+.input-field {
+  margin-bottom: 1.8rem;
+
+  label {
+    color: @secondary-accent;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color @transition-time ease;
+  }
+
+  input[type],
+  textarea,
+  .select-wrapper input.select-dropdown {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    font-size: 1rem;
+    background-color: fade(@glass-bg, 25%);
+    border: none;
+    border-bottom: 2px solid fade(@text-muted, 35%);
+    border-radius: @border-radius;
+    color: @text-main;
+    transition: all @transition-time ease;
+
+    &::placeholder {
+      color: fade(@text-muted, 45%);
+      font-style: italic;
+    }
+
+    &:focus {
+      background-color: fade(@primary-accent, 8%);
+      border-bottom: 2px solid @primary-accent;
+      outline: none;
+    }
+
+    &:disabled {
+      background-color: fade(@glass-bg, 10%);
+      border-bottom: 1px dashed fade(@text-muted, 30%);
+      color: fade(@text-muted, 60%);
+    }
+  }
+
+  input:focus + label,
+  textarea:focus + label {
+    color: @primary-accent;
+  }
+}
+
+/* ✅ Validación visual */
+input.valid,
+textarea.valid {
+  border-bottom: 2px solid @success-color !important;
+}
+
+input.invalid,
+textarea.invalid {
+  border-bottom: 2px solid @error-color !important;
+}
+
+/* 🔽 Dropdown personalizado */
+.select-dropdown {
+  background-color: fade(@glass-bg, 85%) !important;
+  border: 1px solid @glass-border;
+  border-radius: @border-radius;
+  box-shadow: @shadow-glass;
+  padding: 0.5rem 0.75rem;
+  color: @text-main !important;
+  font-size: 1rem;
+}
+
+.select-dropdown.dropdown-content {
+  max-height: 280px;
+  overflow-y: auto;
+  background-color: fade(@glass-bg, 95%);
+  scrollbar-width: thin;
+  scrollbar-color: @primary-accent transparent;
+
+  li > span {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    color: @text-main;
+    border-radius: @border-radius;
+    transition: background @transition-fast;
+  }
+
+  li:hover > span {
+    background-color: fade(@primary-accent, 25%);
+    color: white;
+  }
+}
+
+/* 👁 Toggle visibilidad de contraseña */
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  color: fade(@text-muted, 60%);
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: @primary-accent;
+  }
+}
+
+/* 📱 Responsive */
+@media screen and (max-width: 600px) {
+  .formulario-wrapper {
+    padding: 2rem 1rem;
+    background-size: 240px auto;
+
+    h2.intro-title,
+    h4.intro-title,
+    h4.center-align {
+      font-size: 1.9rem;
+    }
+  }
+}
+
+/* ============================================================================
+   👁 Toggle visibilidad de contraseña
+============================================================================ */
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  color: fade(@text-muted, 60%);
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: @primary-accent;
+  }
+}
+
+/* ============================================================================
+   📱 Responsive
+============================================================================ */
+@media screen and (max-width: 600px) {
+  .formulario-wrapper {
+    padding: 2rem 1rem;
+    background-size: 200px auto; // ⬆️ Mantiene legibilidad en móviles
+
+    h2.intro-title {
+      font-size: 1.9rem;
+    }
+  }
+}
+
+.glass-card {
+  background:
+    linear-gradient(rgba(14, 34, 33, 0.92), rgba(14, 34, 33, 0.92)),
+    url("/imagenes/formulario_patron.png");
+  background-repeat: repeat;
+  background-position: center center;
+  background-size: 200px auto;
+
+  backdrop-filter: blur(@glass-blur);
+  -webkit-backdrop-filter: blur(@glass-blur);
+  border-radius: @border-radius-lg;
+  box-shadow: @shadow-glass;
+  padding: 2.5rem;
+  overflow: hidden;
+  color: @text-main;
+}
+
+/* ============================================================================
+   🔒 TianguiStore - Login Card Estilo Mexica Glassmorphism
+   Estilo refinado para la tarjeta de inicio de sesión. Mejora contraste,
+   accesibilidad, legibilidad y armonía con el diseño oscuro.
+============================================================================ */
+
+.login-card {
+  background: fade(@glass-bg, 88%);
+  backdrop-filter: blur(@glass-blur);
+  -webkit-backdrop-filter: blur(@glass-blur);
+  border-radius: @border-radius-lg;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
+  padding: 2rem 2.5rem;
+  color: @text-main;
+
+  .card-content {
+    padding: 0;
+  }
+
+  h5 {
+    font-size: 1.8rem;
+    color: @secondary-accent;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  p {
+    font-size: 1rem;
+    color: fade(@text-main, 85%);
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  .input-field input,
+  .input-field textarea {
+    background-color: fade(@glass-bg, 35%);
+    color: @text-main;
+    border-radius: @border-radius;
+    border-bottom: 2px solid fade(@secondary-accent, 35%);
+    padding: 0.7rem;
+  }
+
+  .input-field label {
+    color: @secondary-accent;
+    font-weight: 500;
+  }
+
+  .toggle-password {
+    color: fade(@text-main, 80%);
+    &:hover {
+      color: @primary-accent;
+    }
+  }
+
+  .btn-large {
+    background-color: @secondary-accent;
+    color: @dark-bg;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.4px;
+    border-radius: 2rem;
+    padding: 0.8rem 1.2rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: darken(@secondary-accent, 10%);
+      transform: scale(1.02);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .helper-text {
+    color: fade(@text-muted, 85%) !important;
+  }
+
+  a {
+    color: lighten(@primary-accent, 10%);
+    font-weight: 500;
+    &:hover {
+      color: @primary-accent;
+    }
+  }
+
+  .card-panel {
+    border-radius: @border-radius;
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+
+  #mensajeError {
+    background-color: fade(@error-color, 85%);
+    color: white;
+  }
+
+  #mensajeExito {
+    background-color: fade(@success-color, 85%);
+    color: white;
+  }
+
+  @media screen and (max-width: @screen-sm) {
+    padding: 1.8rem 1.3rem;
+
+    h5 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+
+    .btn-large {
+      font-size: 0.95rem;
+    }
+  }
+}
+.login-wrapper {
+  margin-top: 4vh; // Ajuste más controlado que 6vh
+  margin-bottom: 6vh;
+
+  @media screen and (max-width: @screen-sm) {
+    margin-top: 2.5vh;
+    margin-bottom: 4vh;
+  }
+}
+
+/* ============================================================================
+   🔒 TOGGLE-PASSWORD - Ícono para mostrar u ocultar contraseña
+   Se ubica dentro del campo de input y ofrece feedback visual e interacción suave
+============================================================================ */
+
+.toggle-password {
+  position: absolute; // Se posiciona sobre el campo de input
+  top: 50%; // Centrado vertical
+  right: 0.75rem; // Separado del borde derecho
+  transform: translateY(-50%); // Corrección de centrado
+  z-index: 2; // Encima del input
+  cursor: pointer; // Cursor de interacción
+  color: fade(@text-main, 80%); // Color semiatenuado
+  font-size: 1.25rem; // Tamaño del ícono visible
+  user-select: none; // Evita selección accidental de texto
+  -webkit-user-select: none;
+  transition:
+    color 0.25s ease,
+    opacity 0.3s ease;
+
+  &:hover {
+    color: @primary-accent; // Acento turquesa al pasar el cursor
+    opacity: 1;
+  }
+
+  &:focus {
+    outline: 2px dashed fade(@primary-accent, 60%);
+    outline-offset: 4px;
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.95); // Retroalimentación visual al hacer clic
+  }
+}
+
+/* ============================================================================
+   ✅ VALIDACIONES - Estados visuales para campos válidos e inválidos
+   Mejora el feedback al usuario con colores contrastantes y transiciones suaves
+============================================================================ */
+
+/* ✔️ Campo válido (éxito) */
+.input-field input.valid,
+.input-field textarea.valid,
+.input-field select.valid {
+  border-bottom: 2px solid lighten(@success-color, 10%); // Verde suave
+  box-shadow: 0 1px 0 0 lighten(@success-color, 10%);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:focus {
+    border-bottom: 2px solid lighten(@success-color, 5%);
+    box-shadow: 0 1px 0 0 lighten(@success-color, 5%);
+  }
+}
+
+/* ❌ Campo inválido (error) */
+.input-field input.invalid,
+.input-field textarea.invalid,
+.input-field select.invalid {
+  border-bottom: 2px solid lighten(@error-color, 10%); // Rojo intenso
+  box-shadow: 0 1px 0 0 lighten(@error-color, 10%);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:focus {
+    border-bottom: 2px solid @error-color;
+    box-shadow: 0 1px 0 0 @error-color;
+  }
+}
+
+/* ============================================================================
+   🧾 HELPER-TEXT - Mensajes de ayuda o validación debajo de inputs
+   Incluye colores semánticos, íconos y alineación moderna con feedback visual claro
+============================================================================ */
+
+.helper-text {
+  font-size: 0.9rem; // Tamaño legible sin sobresaturar
+  line-height: 1.4; // Espaciado vertical óptimo
+  margin-top: 0.5rem; // Separación respecto al campo
+  display: block;
+  color: fade(
+    @text-main,
+    85%
+  ) !important; // Color por defecto (ligeramente atenuado)
+  font-weight: 400;
+  padding-left: 0.2rem;
+  transition: color @transition-time ease;
+
+  /* 🔁 Estilo para mensajes con íconos */
+  &.red-text,
+  &.green-text,
+  &.amber-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; // Separación entre ícono y texto
+    margin-top: 0.35rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  /* ❌ Error (rojo) */
+  &.red-text {
+    color: lighten(@error-color, 5%) !important;
+  }
+
+  /* ✅ Correcto (verde) */
+  &.green-text {
+    color: lighten(@success-color, 5%) !important;
+  }
+
+  /* ⚠️ Advertencia / Sugerencia (ámbar) */
+  &.amber-text {
+    color: darken(@warning-color, 5%) !important;
+  }
+
+  /* 🧩 Ícono embebido dentro del mensaje */
+  .material-icons {
+    font-size: 1.1rem;
+    line-height: 1;
+    position: relative;
+    top: 1px;
+    opacity: 0.85;
+  }
+
+  /* 📱 Responsividad en dispositivos pequeños */
+  @media screen and (max-width: 480px) {
+    font-size: 0.85rem;
+    .material-icons {
+      font-size: 1rem;
+    }
+  }
+}
+
+/* ============================================================================
+   🔘 BOTONES - Estilo principal para botones grandes (submit) y de acción
+   Estética elegante, acentuada y con interactividad suave. Coherente con el estilo Mexica.
+============================================================================ */
+
+button[type="submit"].btn-large,
+.btn.btn-agregar {
+  background-color: @secondary-accent; // Fondo oro Mexica
+  color: @dark-bg; // Texto oscuro para contraste
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: @border-radius; // Bordes suaves
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); // Sombra flotante suave
+  transition: all @transition-time ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: darken(@secondary-accent, 10%); // Acento más oscuro
+    transform: scale(1.035); // Ligero zoom
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5); // Sombra más profunda
+  }
+
+  &:focus {
+    outline: 2px dashed fade(@primary-accent, 60%);
+    outline-offset: 4px;
+  }
+
+  &:active {
+    transform: scale(0.98); // Feedback al clic
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  &:disabled {
+    background-color: fade(@secondary-accent, 40%);
+    color: fade(@dark-bg, 60%);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+
+  i.material-icons,
+  svg {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    vertical-align: middle;
+  }
+}
+
+/* ============================================================================
+   🏷️ ETIQUETAS DE PRODUCTO (BADGES)
+   Distintivos flotantes para destacar estado del producto: nuevo, popular, bajo stock, etc.
+   Estilo visual con glassmorphism, color de fondo semántico y legibilidad optimizada.
+============================================================================ */
+
+.badge-etiqueta {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 1.25rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  border: 1px solid fade(#fff, 6%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  animation: fadeIn 0.5s ease-in-out;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  i,
+  svg {
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+}
+
+/* 🎯 Badges específicos por tipo de estado */
+.badge-destacado {
+  background-color: #00bcd4; // Cyan
+  color: #081c1b;
+  box-shadow: 0 0 8px fade(#00bcd4, 50%);
+}
+
+.badge-nuevo {
+  background-color: #2e7d32; // Verde oscuro
+  color: #fff;
+  box-shadow: 0 0 8px fade(#2e7d32, 40%);
+}
+
+.badge-bajo-stock {
+  background-color: #f4511e; // Naranja intenso
+  color: #fff;
+  box-shadow: 0 0 8px fade(#f4511e, 40%);
+}
+
+.badge-popular {
+  background-color: #ffc107; // Amarillo
+  color: #121212;
+  box-shadow: 0 0 8px fade(#ffc107, 40%);
+}
+/* ══════════════════════════════════════
+ 👤 MENÚ DE USUARIO + IDENTIDAD DE ROL
+═══════════════════════════════════════ */
+
+#menu-usuario .dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: @border-radius;
+  background-color: fade(@glass-bg, 80%);
+  backdrop-filter: blur(6px);
+  transition:
+    background-color @transition-time,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    background-color: fade(@glass-bg, 95%);
+    box-shadow: 0 2px 6px fade(#000, 25%);
+  }
+
+  img {
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid @glass-border;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+
+    span:first-child {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: @text-main;
+    }
+
+    .badge-rol {
+      margin-top: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      border-radius: 6px;
+      line-height: 1.1;
+      white-space: nowrap;
+      text-transform: capitalize;
+      letter-spacing: 0.3px;
+      height: auto;
+      background-color: fade(@card-bg, 92%);
+      color: @text-main;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 1px 2px fade(#000, 15%);
+      border: 1px solid fade(@glass-border, 40%);
+
+      i {
+        font-size: 0.72rem;
+        margin: 0;
+        transform: translateY(1px); // alineación vertical fina
+      }
+    }
+  }
+
+  // Icono caret de dropdown (si lo usas)
+  i.fas.fa-caret-down {
+    margin-left: auto;
+    font-size: 0.85rem;
+    opacity: 0.75;
+  }
+}
+
+/* ══════════════════════════════════════
+   📁 MENÚ PRINCIPAL (desktop)
+═══════════════════════════════════════ */
+
+.nav-principal {
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto;
+  align-items: center;
+
+  li {
+    margin: 0;
+
+    a.nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.88rem;
+      line-height: 1.2;
+      color: @text-main;
+      transition: color @transition-time;
+
+      i {
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+        transition: transform 0.3s ease;
+      }
+
+      span {
+        display: block;
+        font-size: 0.85rem;
+        letter-spacing: 0.3px;
+        margin-top: 2px;
+      }
+
+      &:hover {
+        color: @secondary-accent;
+
+        i {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+.hide {
+  display: none !important;
+}
+.menu-auth-opcion a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: @border-radius;
+  font-weight: 500;
+  font-size: 0.88rem;
+  background-color: fade(@glass-bg, 60%);
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    background-color: fade(@glass-bg, 80%);
+    transform: translateY(-1px);
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+
+    i {
+      font-size: 1rem;
+      color: @primary-accent;
+    }
+  }
+
+  span {
+    color: @text-main;
+    line-height: 1;
+  }
+}
+.icon-login,
+.icon-registro {
+  font-size: 1.05rem;
+  color: @primary-accent;
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease;
+
+  &:hover {
+    transform: scale(1.15);
+    color: lighten(@primary-accent, 15%);
+  }
+}
+
+.texto-auth {
+  font-weight: 500;
+  font-size: 0.88rem;
+  color: @text-main;
+  text-shadow: 0 1px 1px fade(#000, 20%);
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+}
+
+.btn-auth {
+  padding: 0.5rem 1.1rem;
+  border-radius: @border-radius;
+  background-color: fade(@glass-bg, 70%);
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    background-color: fade(@glass-bg, 90%);
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: 2px dashed fade(@primary-accent, 60%);
+    outline-offset: 3px;
+  }
+}
+
+@media (max-width: @screen-sm) {
+  .menu-auth-opcion span {
+    display: none;
+  }
+}
+
+/* ══════════════════════════════════════
+ 🎨 PALETA DE COLORES POR ROL (alta accesibilidad)
+═══════════════════════════════════════ */
+
+.badge-rol.admin {
+  background-color: fade(@secondary-accent, 90%) !important;
+  color: #000 !important;
+
+  i {
+    color: #000 !important;
+  }
+}
+
+.badge-rol.soporte {
+  background-color: fade(#42a5f5, 85%) !important;
+  color: #ffffff !important;
+
+  i {
+    color: #ffffff !important;
+  }
+}
+
+.badge-rol.vendedor {
+  background-color: mix(
+    @primary-accent,
+    #000,
+    80%
+  ) !important; // Mayor contraste
+  color: #ffffff !important;
+
+  i {
+    color: #ffffff !important;
+  }
+}
+
+.badge-rol.cliente {
+  background-color: fade(#cfd8dc, 85%) !important;
+  color: #212121 !important;
+
+  i {
+    color: #212121 !important;
+  }
+}
+
+.badge-rol.desarrollador {
+  background-color: fade(#ab47bc, 85%) !important;
+  color: #ffffff !important;
+
+  i {
+    color: #ffffff !important;
+  }
+}
+
+.badge-rol.sin-rol {
+  background-color: fade(#757575, 85%) !important;
+  color: #ffffff !important;
+
+  i {
+    color: #ffffff !important;
+  }
+}
+
+/* ============================================================================
+   🧾 ADMIN PEDIDOS - Estilo específico para la vista de pedidos (admin)
+============================================================================ */
+
+/* Estilo del modal glass (detalle de pedido) */
+.modal-glass {
+  background-color: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+
+  // Fallback visual si el blur no es soportado
+  @supports not (backdrop-filter: blur(12px)) {
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+
+  border-radius: @border-radius-lg;
+  padding: 20px;
+  color: @text-main;
+}
+
+
+.modal-content {
+  h5,
+  p,
+  h6 {
+    color: @text-main;
+  }
+
+  ul.collection {
+    background-color: transparent;
+    border: none;
+  }
+
+  .collection-item {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: @text-main;
+  }
+}
+
+/* Ícono de botón de filtro */
+.btn-filtrar-icon i {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+
+.modal .modal-footer {
+  background-color: transparent !important;
+  border-top: none;
+  box-shadow: none;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+
+  .btn-flat {
+    color: @secondary-accent;
+    font-weight: 600;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: lighten(@secondary-accent, 10%);
+    }
+  }
+}
+
+.datepicker-modal {
+  background-color: fade(@glass-bg, 92%) !important;
+  backdrop-filter: blur(@glass-blur);
+  -webkit-backdrop-filter: blur(@glass-blur);
+  border-radius: @border-radius-lg;
+  box-shadow: @shadow-glass;
+  color: @text-main;
+  overflow: hidden;
+}
+
+.datepicker-date-display {
+  background-color: fade(@glass-bg, 85%) !important;
+  color: @secondary-accent !important;
+  border-bottom: 1px solid fade(@glass-border, 10%);
+}
+
+.datepicker-controls,
+.datepicker-calendar-container {
+  background-color: fade(@glass-bg, 92%) !important;
+  color: @text-main;
+
+  .datepicker-table td,
+  .datepicker-table th {
+    color: @text-main !important;
+
+    &:hover {
+      background-color: fade(@primary-accent, 15%);
+    }
+
+    &.is-selected {
+      background-color: @primary-accent;
+      color: @dark-bg !important;
+    }
+  }
+
+  .datepicker-day-button {
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+}
+
+.datepicker-controls button {
+  color: @secondary-accent !important;
+  &:hover {
+    background-color: fade(@secondary-accent, 10%);
+  }
+}
+
+
+/* ============================================================================
+   🎞️ ANIMACIONES - TianguiStore
+   Animaciones modernas y suaves para glassmorphism oscuro profesional.
+============================================================================ */
+
+/* === ⚡ Aparición básica === */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* === ⬇️ Entrada desde arriba (menús, alertas, modales) === */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === ⬆️ Entrada desde abajo (botones flotantes, tarjetas) === */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === 🔍 Escala suave (entradas visuales como tarjetas) === */
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* === 🔁 Fade escalonado para listas (cards en galería o loops) === */
+@keyframes fadeStaggered {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === 🔄 Rotación continua (spinners) === */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* === 💡 Parpadeo pulsante (tooltips, badges dinámicos) === */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* === ✨ Fade in + blur (efecto vidrio animado) === */
+@keyframes fadeBlurIn {
+  0% {
+    opacity: 0;
+    filter: blur(4px);
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+

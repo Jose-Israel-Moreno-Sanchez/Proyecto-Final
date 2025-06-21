@@ -1,0 +1,112 @@
+<!-- 📄 pedidos.html corregido -->
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Panel de administración de pedidos - TianguiStore" />
+  <meta name="theme-color" content="#081c1b" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Pedidos (Admin) | TianguiStore</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="/estilo/main.css" />
+</head>
+
+<body class="dark-theme">
+
+  <header>
+    <div id="navbar-container" role="navigation" aria-label="Menú principal"></div>
+  </header>
+
+  <main class="formulario-wrapper z-depth-5 animate__animated animate__fadeIn">
+    <h4 class="center-align black-text text-lighten-1">Gestión de Pedidos</h4>
+
+    <!-- Filtros -->
+    <section class="section" aria-labelledby="titulo-filtros">
+      <span id="titulo-filtros" class="card-title black-text">Filtros</span>
+      <div class="row">
+        <div class="input-field col s12 m3">
+          <input type="text" id="fecha-inicio" class="datepicker black-text" />
+          <label for="fecha-inicio" class="active">Desde</label>
+        </div>
+        <div class="input-field col s12 m3">
+          <input type="text" id="fecha-fin" class="datepicker black-text" />
+          <label for="fecha-fin" class="active">Hasta</label>
+        </div>
+        <div class="input-field col s12 m3">
+          <label for="estado-filtro" class="active">Estado</label>
+          <select id="estado-filtro" class="browser-default dark-select black-text">
+            <option value="" selected>Todos</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="Pagado">Pagado</option>
+            <option value="Enviado">Enviado</option>
+            <option value="Cancelado">Cancelado</option>
+          </select>
+        </div>
+        <div class="input-field col s12 m3 center-align">
+          <button id="btn-filtrar" class="btn-large amber darken-2 waves-effect waves-light btn-filtrar-icon" type="button">
+            <i class="material-icons left">filter_alt</i>
+            Filtrar
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabla de pedidos -->
+    <section class="section">
+      <table class="highlight responsive-table centered black-text">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-pedidos">
+          <!-- Contenido dinámico -->
+        </tbody>
+      </table>
+    </section>
+
+    <div class="center-align">
+      <ul id="paginacion-pedidos" class="pagination" aria-label="Paginación de pedidos"></ul>
+    </div>
+  </main>
+
+  <!-- Modal Detalle -->
+  <div id="modal-detalle-pedido" class="modal modal-glass z-depth-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <h5 id="modal-title" class="amber-text">Detalle del Pedido #<span id="detalle-id"></span></h5>
+      <p><strong>Cliente:</strong> <span id="detalle-cliente"></span></p>
+      <p><strong>Fecha:</strong> <span id="detalle-fecha"></span></p>
+      <p><strong>Total:</strong> $<span id="detalle-total"></span></p>
+      <p><strong>Dirección de envío:</strong> <span id="detalle-direccion"></span></p>
+      <p><strong>Método de pago:</strong> <span id="detalle-metodo"></span></p>
+      <h6>Productos</h6>
+      <ul id="detalle-productos" class="collection"></ul>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close btn-flat amber-text text-lighten-2">Cerrar</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer grey darken-3">
+    <div id="footer-container"></div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/scripts/loadComponent.js" defer></script>
+  <script src="/scripts/authGuard.js" defer></script>
+  <script src="/scripts/admin/pedidos.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+</body>
+</html>

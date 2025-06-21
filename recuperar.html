@@ -1,0 +1,72 @@
+<!-- 📁 recuperar.html - Página para recuperar la contraseña de TianguiStore -->
+
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recuperar Contraseña | TianguiStore</title>
+
+  <!-- MaterializeCSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+  
+  <!-- FontAwesome para íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="estilo/estilos.css" />
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- Contenido principal -->
+  <main class="container my-auto d-flex justify-content-center align-items-center flex-grow-1">
+    <div class="card p-4 shadow rounded-4" style="max-width: 400px; width: 100%;">
+      <div class="card-body">
+        <h3 class="text-center mb-4 fw-bold">
+          <i class="fas fa-unlock-alt me-2"></i> Recuperar Contraseña
+        </h3>
+
+        <form id="recuperarForm" novalidate>
+          <!-- Correo electrónico -->
+          <div class="input-field mb-3">
+            <i class="fas fa-envelope prefix"></i>
+            <input type="email" id="email" class="validate" placeholder="usuario@correo.com" required autocomplete="email" />
+            <label for="email">Correo electrónico</label>
+            <span class="helper-text" data-error="Por favor, ingresa un correo válido"></span>
+          </div>
+
+          <!-- Botón de envío -->
+          <button type="submit" class="btn btn-primary w-100">
+            <i class="fas fa-paper-plane me-2"></i> Enviar enlace de recuperación
+          </button>
+        </form>
+
+        <!-- Mensajes -->
+        <div id="mensajeError" class="alert alert-danger mt-3 d-none"></div>
+        <div id="mensajeExito" class="alert alert-success mt-3 d-none"></div>
+
+        <!-- Enlace de retorno -->
+        <div class="text-center mt-3">
+          <a href="login.html" class="text-decoration-none">
+            <i class="fas fa-arrow-left me-1"></i> Volver al inicio de sesión
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-container" class="mt-auto"></div>
+
+  <!-- Scripts -->
+  <script src="scripts/loadComponent.js" defer></script>
+  <script src="scripts/recuperar.js" defer></script>
+
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
